@@ -13,6 +13,10 @@ from random import randrange
 from turtle import *
 from freegames import vector
 
+#Codigo Modificado por: Ariel Campos Hernández
+#Autor 1:Juan Pablo Elorriaga Gaitán
+#Autor 2: Ariel Campos Hernández
+
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
@@ -22,12 +26,14 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 350) / 25    #Velocidad de la bola en x
+        speed.y = (y + 350) / 25    #Velocidad de la bola en y
+
 
 def inside(xy):
     "Return True if xy within screen."
     return -200 < xy.x < 200 and -200 < xy.y < 200
+
 
 def draw():
     "Draw ball and targets."
@@ -43,6 +49,7 @@ def draw():
 
     update()
 
+
 def move():
     "Move ball and targets."
     if randrange(40) == 0:
@@ -51,10 +58,10 @@ def move():
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
+        target.x -= 1.25    #Velocidad de los blancos en x
 
     if inside(ball):
-        speed.y -= 0.35
+        speed.y -= .6    #Multiplicador de caida de la bola
         ball.move(speed)
 
     dupe = targets.copy()
@@ -69,8 +76,9 @@ def move():
     for target in targets:
         if not inside(target):
             return
-
+        
     ontimer(move, 50)
+
 
 setup(420, 420, 370, 0)
 hideturtle()
