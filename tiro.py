@@ -72,11 +72,15 @@ def move():
             targets.append(target)
 
     draw()
-
+    
     for target in targets:
-        if not inside(target):
-            return
-        
+        if not inside(target): #Si el target sale del rango, este volverá a aparecer en la coordenada 190 en el eje x
+            target.x = 190
+            
+#    for target in targets:
+#        if not inside(target): Si el target no esta dentro del rango, entonces el juego se detiene
+#            return
+
     ontimer(move, 50)
 
 
